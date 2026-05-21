@@ -1,22 +1,48 @@
-<!DOCTYPE html>
-<html lang="ca">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tarjeta de Pokémon</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="pokemon-card">
-        <img class="pokemon-image" src="images/bulbasaur.png" alt="Imatge del Pokémon">
-        <div class="pokemon-info">
-            <h2 class="pokemon-name">Bulbasaur</h2>
-            <p class="pokemon-type plant">Planta</p>
-            <p class="pokemon-type poison">Verí</p>
-            <p class="pokemon-description">
-                Bulbasaur és un Pokémon de tipus Planta i Verí. És fàcil distingir-lo per la llavor que té a l'esquena, que creix a mesura que ell ho fa.
-            </p>
-        </div>
-    </div>
-</body>
-</html>
+.pokemon-card {
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    width: 300px;
+    margin: 50px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pokemon-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.pokemon-info {
+    background-color: #b6f7b0;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.pokemon-name {
+    font-family: Verdana, sans-serif;
+    color: #2a4d14;
+    font-size: 24px;
+}
+
+.pokemon-type {
+    margin-bottom: 10px;
+}
+
+.pokemon-type.plant {
+    color: green;
+}
+
+.pokemon-type.poison {
+    color: purple;
+}
+
+.pokemon-description {
+    font-size: 14px;
+    color: #666;
+}

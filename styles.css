@@ -10,4 +10,9 @@
     flex-direction: column;
     justify-content: center;
  }
+ .pokemon-image {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+ }
  

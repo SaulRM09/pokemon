@@ -1,189 +1,403 @@
-/* ====== Pokémon Card - Versión Mejorada ====== */
+/* =========================================
+   POKÉMON CARD - ULTRA VERSION ⚡
+========================================= */
 
 :root {
-    --card-bg: linear-gradient(145deg, #fdfdfd, #e8f5e9);
-    --primary: #2e7d32;
-    --secondary: #7b1fa2;
-    --text-dark: #1b1b1b;
-    --text-light: #5f6368;
-    --shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-    --hover-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
-    --radius: 20px;
-    --transition: 0.35s ease;
+    --grass: #43d854;
+    --poison: #a040ff;
+    --dark: #101820;
+    --light: #ffffff;
+    --glass: rgba(255,255,255,0.12);
+    --shadow: 0 15px 35px rgba(0,0,0,0.35);
 }
 
-/* ====== Contenedor Principal ====== */
-
-.pokemon-card {
-    width: 320px;
-    margin: 50px auto;
-    padding: 24px;
-    border-radius: var(--radius);
-
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-
-    box-shadow: var(--shadow);
-    border: 1px solid rgba(255,255,255,0.4);
+/* Fondo opcional */
+body {
+    margin: 0;
+    min-height: 100vh;
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    gap: 18px;
+
+    background:
+        radial-gradient(circle at top left, #3cff72 0%, transparent 30%),
+        radial-gradient(circle at bottom right, #9f4dff 0%, transparent 30%),
+        linear-gradient(135deg, #081018, #13232f);
+
+    overflow: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+/* =========================================
+   CARD PRINCIPAL
+========================================= */
+
+.pokemon-card {
+    position: relative;
+
+    width: 340px;
+    padding: 28px;
+
+    border-radius: 28px;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    box-shadow: var(--shadow);
+
+    overflow: hidden;
 
     text-align: center;
 
-    overflow: hidden;
-    position: relative;
-
     transition:
-        transform var(--transition),
-        box-shadow var(--transition);
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+
+    animation: floating 4s ease-in-out infinite;
 }
 
-/* Efecto hover elegante */
-.pokemon-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--hover-shadow);
-}
-
-/* Brillo decorativo */
+/* Glow animado */
 .pokemon-card::before {
     content: "";
+
     position: absolute;
-    top: -60px;
-    right: -60px;
+    inset: -2px;
 
-    width: 160px;
-    height: 160px;
+    border-radius: inherit;
 
-    background: rgba(255,255,255,0.25);
-    border-radius: 50%;
+    background:
+        linear-gradient(
+            135deg,
+            #00ff88,
+            #00e5ff,
+            #8c52ff,
+            #ff00d4,
+            #00ff88
+        );
 
-    pointer-events: none;
+    background-size: 400% 400%;
+
+    z-index: -2;
+
+    animation: borderGlow 8s linear infinite;
 }
 
-/* ====== Imagen ====== */
+/* Fondo interno */
+.pokemon-card::after {
+    content: "";
+
+    position: absolute;
+    inset: 2px;
+
+    background: rgba(10, 15, 20, 0.92);
+
+    border-radius: inherit;
+
+    z-index: -1;
+}
+
+/* Hover extremo */
+.pokemon-card:hover {
+    transform:
+        rotateY(8deg)
+        rotateX(6deg)
+        scale(1.05);
+
+    box-shadow:
+        0 20px 50px rgba(0,0,0,0.5),
+        0 0 40px rgba(0,255,170,0.4);
+}
+
+/* =========================================
+   IMAGEN
+========================================= */
 
 .pokemon-image {
-    width: 180px;
+    width: 190px;
     max-width: 100%;
-
-    border-radius: 16px;
 
     object-fit: contain;
 
-    filter: drop-shadow(0 6px 12px rgba(0,0,0,0.25));
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,0.2))
+        drop-shadow(0 0 25px rgba(0,255,140,0.35));
 
     transition:
-        transform 0.4s ease,
-        filter 0.4s ease;
+        transform 0.6s ease,
+        filter 0.6s ease;
+
+    animation: pulse 2.5s infinite;
 }
 
 .pokemon-card:hover .pokemon-image {
-    transform: scale(1.08) rotate(-2deg);
-    filter: drop-shadow(0 10px 18px rgba(0,0,0,0.3));
+    transform:
+        scale(1.15)
+        rotate(-6deg);
+
+    filter:
+        drop-shadow(0 0 20px rgba(255,255,255,0.4))
+        drop-shadow(0 0 35px rgba(0,255,140,0.8));
 }
 
-/* ====== Información ====== */
-
-.pokemon-info {
-    width: 100%;
-
-    background: rgba(255,255,255,0.65);
-
-    border-radius: 16px;
-    padding: 18px;
-
-    border: 1px solid rgba(255,255,255,0.5);
-
-    backdrop-filter: blur(8px);
-}
-
-/* ====== Nombre ====== */
+/* =========================================
+   NOMBRE
+========================================= */
 
 .pokemon-name {
-    font-family: "Trebuchet MS", sans-serif;
-    font-size: 2rem;
-    font-weight: 800;
+    margin-top: 10px;
+    margin-bottom: 18px;
 
-    color: var(--primary);
+    font-size: 2.2rem;
+    font-weight: 900;
 
-    margin-bottom: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 
-    letter-spacing: 1px;
-    text-transform: capitalize;
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #74ffb3,
+        #00e0ff,
+        #ffffff
+    );
 
-    text-shadow: 1px 2px 4px rgba(0,0,0,0.1);
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: textShine 4s linear infinite;
 }
 
-/* ====== Tipos ====== */
+/* =========================================
+   TIPOS
+========================================= */
 
 .pokemon-types {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+    gap: 12px;
 
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .pokemon-type {
-    padding: 6px 14px;
+    padding: 8px 16px;
 
     border-radius: 999px;
 
-    font-size: 0.85rem;
-    font-weight: 700;
+    font-size: 0.8rem;
+    font-weight: 800;
 
     color: white;
 
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    position: relative;
 
-    transition: transform 0.2s ease;
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Shine effect */
+.pokemon-type::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: -100%;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,0.5),
+            transparent
+        );
+
+    transition: 0.5s;
+}
+
+.pokemon-type:hover::before {
+    left: 100%;
 }
 
 .pokemon-type:hover {
-    transform: scale(1.08);
+    transform: scale(1.1);
 }
 
-/* Tipos específicos */
+/* Colores tipos */
 
 .pokemon-type.plant {
-    background: linear-gradient(135deg, #43a047, #66bb6a);
+    background: linear-gradient(135deg, #00c853, #69f0ae);
+
+    box-shadow:
+        0 0 15px rgba(0,255,120,0.5);
 }
 
 .pokemon-type.poison {
-    background: linear-gradient(135deg, #8e24aa, #ba68c8);
+    background: linear-gradient(135deg, #8e24aa, #d500f9);
+
+    box-shadow:
+        0 0 15px rgba(213,0,249,0.5);
 }
 
-/* ====== Descripción ====== */
+/* =========================================
+   INFO BOX
+========================================= */
+
+.pokemon-info {
+    padding: 20px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.06);
+
+    border: 1px solid rgba(255,255,255,0.1);
+
+    box-shadow:
+        inset 0 0 20px rgba(255,255,255,0.03);
+
+    position: relative;
+}
+
+/* Línea decorativa */
+.pokemon-info::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 60%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #00ffcc,
+            transparent
+        );
+}
+
+/* =========================================
+   DESCRIPCIÓN
+========================================= */
 
 .pokemon-description {
+    color: rgba(255,255,255,0.8);
+
     font-size: 0.95rem;
-    line-height: 1.6;
+    line-height: 1.7;
 
-    color: var(--text-light);
-
-    padding: 0 5px;
+    text-shadow: 0 0 8px rgba(255,255,255,0.08);
 }
 
-/* ====== Responsive ====== */
+/* =========================================
+   PARTÍCULAS DECORATIVAS
+========================================= */
+
+.pokemon-card span {
+    position: absolute;
+
+    width: 8px;
+    height: 8px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 20px #00ffcc;
+
+    animation: particles 5s linear infinite;
+}
+
+/* =========================================
+   ANIMACIONES
+========================================= */
+
+@keyframes floating {
+    0%,100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes pulse {
+    0%,100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes borderGlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 400% 50%;
+    }
+}
+
+@keyframes textShine {
+    0% {
+        background-position: 0% center;
+    }
+    100% {
+        background-position: 300% center;
+    }
+}
+
+@keyframes particles {
+    0% {
+        transform: translateY(0px) scale(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        transform: translateY(-300px) scale(0);
+        opacity: 0;
+    }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
 
 @media (max-width: 480px) {
+
     .pokemon-card {
-        width: 92%;
-        padding: 20px;
+        width: 90%;
+        padding: 22px;
     }
 
     .pokemon-name {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
     }
 
     .pokemon-image {
-        width: 150px;
+        width: 160px;
     }
 }
